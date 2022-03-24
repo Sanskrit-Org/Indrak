@@ -8,11 +8,12 @@ import in_tokenizer
 #
 
 class IndrakParser():
-    def __init__(self, fileReader):
+    def __init__(self, fileReader, debugMode = False):
+        self.debug = debugMode
         self.file = fileReader
         self.yet_started = False
         self.code = self.file.FileContents.split(' ')
-        self.tokenizer = in_tokenizer.IndrakTokenizer()
+        self.tokenizer = in_tokenizer.IndrakTokenizer(self.debug)
     def action(self):
         self.tokenizer.Analyse(self.code)
         self.tokenizer.Tokenise()

@@ -5,5 +5,5 @@ import indrak as indrak
 
 indrak_source = visitor.FileReader("../परीक्षण/लघुअंश.लघु")
 
-engine = indrak.IndrakParser(indrak_source)
+engine = indrak.IndrakParser(indrak_source, True)
 engine.action()
