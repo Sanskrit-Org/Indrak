@@ -12,7 +12,8 @@ bol_IndrakTokens = {
     "म५": "म५",
     "म६": "म६",
     "**": "**",
-    "newLine": "\n"
+    "newLine": "\n",
+    "।": "।"
 }
 
 bol_TokenValue = {
