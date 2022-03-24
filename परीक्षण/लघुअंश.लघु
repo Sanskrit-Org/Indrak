@@ -1,9 +1,14 @@
-**qubit q0;
-
 लघुअंश म१
 लघुअंश म२
+लघुअंश म३
+लघुअंश म४
+लघुअंश म५
+लघुअंश म६
 
-म१ । ०  ** start at zero stage
-म२ । ०
-
-** म१ । म२ ** compare
+**
+**
+** लघुअंशa म7X
+लघुअंश म६ ** This is comment for whole line WOW! **** ** kg ** ** Skipped **
+** लघुअंशa म7X
+** लघुअंशa म7X
+** लघुअंशa म7X

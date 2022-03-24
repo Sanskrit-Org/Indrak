@@ -1,5 +1,9 @@
-from textwrap import indent
-import visitor
+# Code of this file belongs to Indrak.Bol
 
-indrak = visitor.FileReader("../परीक्षण/लघुअंश.लघु")
-indrak.print_contents()
+import visitor as visitor
+import indrak as indrak
+
+indrak_source = visitor.FileReader("../परीक्षण/लघुअंश.लघु")
+
+engine = indrak.IndrakParser(indrak_source)
+engine.action()
