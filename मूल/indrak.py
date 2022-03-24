@@ -1,4 +1,6 @@
-# Code of this file belongs to Indrak.Bol
+# Sanskrit-Org  [Github]
+# This file is part of Sanskrit-Org > Indrak Project
+# See License for more details.
 
 import visitor
 import in_tokenizer
@@ -7,13 +9,15 @@ import in_tokenizer
 #   '__', '__\nNEXT_LINE_WORD', '_','_\nNEXT_LINE_WORD'
 #
 
+
 class IndrakParser():
-    def __init__(self, fileReader, debugMode = False):
+    def __init__(self, fileReader, debugMode=False):
         self.debug = debugMode
         self.file = fileReader
         self.yet_started = False
         self.code = self.file.FileContents.split(' ')
         self.tokenizer = in_tokenizer.IndrakTokenizer(self.debug)
+
     def action(self):
         self.tokenizer.Analyse(self.code)
         self.tokenizer.Tokenise()

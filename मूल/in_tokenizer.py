@@ -1,3 +1,7 @@
+# Sanskrit-Org  [Github]
+# This file is part of Sanskrit-Org > Indrak Project
+# See License for more details.
+
 bol_IndrakTokens = {
     "लघुअंश": "लघुअंश",
     "म१": "म१",
@@ -31,6 +35,7 @@ bol_ErrorString = {
     "-1": "Unknown or Invalid Token"
 }
 
+
 class BolToken():
     def __init__(self, id, original, token, error):
         self.id = id    # Index of Token in bol_Tokens
@@ -38,12 +43,15 @@ class BolToken():
         self.value = bol_TokenValue.get(self.token, "__invalid_val__")
         self.error = error
         self.original = original
+
     def Debug(self):
         print(self.original+' -')
-        print("\tID: {0}, Value: {1}, Error: {2}".format(self.id, self.value, self.error))
+        print("\tID: {0}, Value: {1}, Error: {2}".format(
+            self.id, self.value, self.error))
+
 
 class IndrakTokenizer():
-    def __init__(self, debugMode = False):
+    def __init__(self, debugMode=False):
         self.tokenArray = []
         self.strArray = []
         self.resultArray = []
@@ -59,7 +67,7 @@ class IndrakTokenizer():
 
     def log(self, text):
         if self.debug == True:
-            print('> ',text)
+            print('> ', text)
 
     def Analyse(self, _str_array):
         i = 0
@@ -71,7 +79,7 @@ class IndrakTokenizer():
             if len(tok) > 1:
                 for l in range(0, len(tok)):
                     if tok[l] == ' ' or tok[l] == '':
-                        continue;
+                        continue
 
                     if l > 0:
                         if self.commentIsPrev == 1:
@@ -80,20 +88,20 @@ class IndrakTokenizer():
                     if tok[l] == bol_IndrakTokens["**"]:
                         self.log("comment begined.")
                         self.commentIsPrev = 1
-                    
+
                     if self.commentIsPrev == 0:
                         self.strArray.append(tok[l])
-                        i+=1
+                        i += 1
                     else:
                         self.log("skipped: "+tok[l])
             else:
                 if tok[0] == ' ' or tok[0] == '':
-                        continue;
+                    continue
                 if tok[0] == bol_IndrakTokens["**"]:
-                        self.log("comment begined.")
-                        self.commentIsPrev = 1
+                    self.log("comment begined.")
+                    self.commentIsPrev = 1
                 if self.commentIsPrev == 0:
-                    i+=1
+                    i += 1
                     self.strArray.append(tok[0])
                 else:
                     self.log("skipped: "+tok[0])
@@ -102,10 +110,11 @@ class IndrakTokenizer():
         i = 0
         for statement in self.strArray:
             self.tokenArray.append(self.MatchToken(i, statement))
-            i+=1
+            i += 1
 
     def Error(self, tok):
-        print("error: "+bol_ErrorString.get(tok.error, "_bol_error")+", code:: "+tok.original)
+        print("error: "+bol_ErrorString.get(tok.error,
+              "_bol_error")+", code:: "+tok.original)
 
     def GetResults(self):
         error_found = 0
