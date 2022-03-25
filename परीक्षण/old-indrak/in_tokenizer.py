@@ -40,10 +40,7 @@ class BolToken():
     def __init__(self, id, original, token, error):
         self.id = id    # Index of Token in bol_Tokens
         self.token = token
-        if self.token != '_VAL_':
-            self.value = bol_TokenValue.get(self.token, "__invalid_val__")
-        else:
-            self.value = original
+        self.value = bol_TokenValue.get(self.token, "__invalid_val__")
         self.error = error
         self.original = original
 
@@ -60,21 +57,9 @@ class IndrakTokenizer():
         self.resultArray = []
         self.commentIsPrev = 0
         self.debug = debugMode
-        self.comma = False
 
     def MatchToken(self, i, str):
-        if ',' in str:
-            nstr = str
-            str = str.replace(',', '')
-            self.comma = True
-            tok = bol_IndrakTokens.get(str, "(0)")
-        else:
-            if self.comma == False:
-                tok = bol_IndrakTokens.get(str, "(0)")
-            else:
-                tok = "_VAL_"
-                self.comma = False
-
+        tok = bol_IndrakTokens.get(str, "(0)")
         error = 0
         if tok == "(0)":
             error = bol_Errors["unknownToken"]
