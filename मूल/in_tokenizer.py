@@ -35,6 +35,20 @@ bol_ErrorString = {
     "-1": "Unknown or Invalid Token"
 }
 
+def GetType(key):
+    here = bol_IndrakTokens.get(key, "_I_")
+    if here == "_I_":
+        return "_U_"
+    
+    v = bol_TokenValue.get(here, "_I_")
+    if v == "_I_":
+        return "_U_"
+    
+    if v == "0x00":
+        return "_INST_"
+    
+    return "_REG_"
+
 
 class BolToken():
     def __init__(self, id, original, token, error):
@@ -61,19 +75,31 @@ class IndrakTokenizer():
         self.commentIsPrev = 0
         self.debug = debugMode
         self.comma = False
+        self.prevId = 0     # for opcodes: _INST_, for regs: _REG_
 
     def MatchToken(self, i, str):
+        tok = "(0)"
         if ',' in str:
             nstr = str
             str = str.replace(',', '')
+            self.prevId =   GetType(str)
             self.comma = True
-            tok = bol_IndrakTokens.get(str, "(0)")
+            if self.prevId == "_REG_":
+                tok = bol_IndrakTokens.get(str, "(0)")
+            else:
+                tok = "(0)"
+                print("Comma found at Unexpected place")
         else:
             if self.comma == False:
                 tok = bol_IndrakTokens.get(str, "(0)")
             else:
-                tok = "_VAL_"
-                self.comma = False
+                if self.prevId == "_REG_":
+                    tok = "_VAL_"
+                    self.prevId = "_VAL_"
+                    self.comma = False
+                else:
+                    print("Unexpected token")
+                    tok = "(0)"
 
         error = 0
         if tok == "(0)":
