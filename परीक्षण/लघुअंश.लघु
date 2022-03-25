@@ -2,12 +2,18 @@
 ** This file is part of Sanskrit-Org > Indrak Project
 ** See License for more details.
 
-लघुअंश म१, 0xFFFF
+लघुअंश म१, म२
 लघुअंश म२, 0x9
 लघुअंश म३, 0x0
 लघुअंश म४
 लघुअंश म५
 लघुअंश म६
+
+** कार्य: functions
+
+** कार्य बोल:
+** लघुअंश म१
+** ;
 
 ** म१ । ०  ** a, start at zero stage [WORK IN PROGRESS]
 
