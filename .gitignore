@@ -1,2 +1,4 @@
 मूल/__pycache__
 .vscode
+codecov
+*.token

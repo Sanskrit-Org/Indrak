@@ -1,2 +1,2 @@
 test:
-	cd मूल && python3 main.py
+	@cd मूल && python3 main.py

@@ -94,8 +94,7 @@ class IndrakTokenizer():
                 tok = bol_IndrakTokens.get(str, "(0)")
             else:
                 if self.prevId == "_REG_":
-                    tok = bol_IndrakTokens.get(str, "_VAL_")
-                    # tok = "_VAL_"
+                    tok = bol_IndrakTokens.get(str, "_VAL_")    # for regs or custom values
                     self.prevId = "_VAL_"
                     self.comma = False
                 else:
@@ -173,5 +172,4 @@ class IndrakTokenizer():
         if self.debug == True:
             for tok in self.tokenArray:
                 tok.Debug()
-        print("Output -")
-        print(self.resultArray)
+        print("output: \n{0}".format(self.resultArray))
